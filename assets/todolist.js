@@ -165,21 +165,21 @@ $(function(){
 			       	url : 'getAllTache.php',
 			       	type : 'GET',
 			       	dataType : 'json', // On désire recevoir du JSON
-			       	success : function(code_json, statut){ // code_json contient le JSON renvoyé
-		           		console.log(code_json);
+			       	success : function(tasks, statut){ // code_json contient le JSON renvoyé
+		           		console.log(tasks);
 		           		$("#contentTache").children().remove();
 		           		$("#contentTache").append('<p><label for="tache">Tache</label></p><textarea name="content" class="form-control" id="tache"></textarea>');
 		           		$("#Taches").children().remove();
-		           		code_json.forEach(function (tache){
+		           		tasks.forEach(function (task){
 
 							// templating de la tache 
-				  			$("#Taches").append('<tr><td>'+tache.content+'</td><td><button id="buttonModif" hidden="'+tache.id+'" type="button" class="btn btn-primary">Modifier</button></td><td><button id="buttonSupp" hidden="'+tache.id+'" type="button" class="btn btn-danger">Supprimer</button></td></tr>');
+				  			$("#Taches").append('<tr><td>'+task.content+'</td><td><button id="buttonModif" hidden="'+task.id+'" type="button" class="btn btn-primary">Modifier</button></td><td><button id="buttonSupp" hidden="'+task.id+'" type="button" class="btn btn-danger">Supprimer</button></td></tr>');
 
 						});
 		       		}
 	});
 
-	$("#boutonJquery").click(function(){
+	$("#addTaskButton").click(function(){
 
 		$.ajax({
 	       	url : 'addTache.php',
@@ -196,7 +196,7 @@ $(function(){
 			       	dataType : 'json', // On désire recevoir du JSON
 			       	success : function(code_json, statut){ // code_json contient le JSON renvoyé
 		           		console.log(code_json);
-		           		$("#contentTache").children().remove();
+		           		$("#TaskContent").children().remove();
 		           		$("#contentTache").append('<p><label for="tache">Tache</label></p><textarea name="content" class="form-control" id="tache"></textarea>');
 		           		$("#Taches").children().remove();
 		           		code_json.forEach(function (tache){
